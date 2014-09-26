@@ -1,0 +1,391 @@
+$sidebarBorderColor: rgba($sidebarColor, 0.3);
+
+.sidebar {
+	width: 350px;
+	float: left;
+	// background-color: $sidebarBg;
+	height: 100%;
+	@include min-breakpoint(screen-lg) {
+		width: 400px;
+	}
+	@include min-breakpoint(screen-xl) {
+		width: 450px;
+	}
+	// .renewables-page & {
+	// 	background-color: darken($renewablesColor, 5%);
+	// }
+	> .row {
+		border-radius: 3px;
+		border: 1px solid $sidebarBorderColor;
+		margin: 15px;
+		@include max-breakpoint(screen-md) {
+			margin: 0;
+		}
+		> .row {
+			margin: 0;
+		}
+	}
+	.sidebar-title {
+		color: #FFFFFF;
+		border-bottom: 1px solid $sidebarBorderColor;
+		p {
+			text-transform: uppercase;
+			@include font-size(12px);
+		}
+		h3 {
+			// line-height: 2;
+			margin-top: 7px;
+			margin-bottom: 4px;
+			text-transform: uppercase;
+			@include font-size(20px);
+			font-family: $boldFont;
+			line-height: 2em;
+		}
+		.menu-icon {
+			display: none;
+			visibility: hidden;
+			margin-left: -20px;
+			margin-top: 8px;
+			@include max-breakpoint(screen-md) {
+				display: block;
+				visibility: visible;
+			}
+			@include max-breakpoint(screen-sm) {
+				margin-left: -15px;
+				margin-top: 4px;
+			}
+			a {
+				width: 16px;
+				height: 34px;
+				line-height: 33px;
+				position: relative;
+				display: block;
+				margin: 0 auto;
+				span:after {
+					right: auto;
+				}
+			}
+		}
+	}
+	.mobile-grade {
+		display: none;
+		visibility: hidden;
+	}
+	.sidebar-logo {
+		text-align: center;
+		border-right: 1px solid $sidebarBorderColor;
+		margin: 0 auto;
+		img {
+			width: 100%;
+			padding-top: 20px;
+			margin-bottom: 20px;
+		}
+	}
+	.sidebar-grade {
+		color: #FFFFFF;
+		padding: 0;
+		text-align: center;
+		h3 {
+			width: 100%;
+			line-height: 1;
+			padding-top: 10px;
+			padding-bottom: 15px;
+			margin-bottom: 0.5rem;
+			font-family: $boldFont;
+			@include font-size(90px);
+			border-bottom: 1px solid $sidebarBorderColor;
+			@include min-breakpoint(screen-lg) {
+				padding-top: 23px;
+				padding-bottom: 20px;
+			}
+		}
+		h5 {
+			@include font-size(13px);
+			font-family: $baseFontFamily;
+			font-style: normal;
+			text-transform: uppercase;
+			padding-top: 4px;
+			margin-top: 0.2rem;
+			margin-bottom: 0.5rem;
+			margin-left: 0;
+			color: rgba(#FFF, 0.9);
+			line-height: 24px;
+			@include min-breakpoint(screen-lg) {
+				padding-top: 7px;
+				@include font-size(16px);
+			}
+		}
+	}
+	.sidebar-feedback {
+		padding: 0;
+		border-top: 1px solid $sidebarBorderColor;
+		border-bottom: 1px solid $sidebarBorderColor;
+		p {
+			line-height: 2.5;
+			border-bottom: 1px solid $sidebarBorderColor;
+		}
+		h6 {
+			line-height: 2.8;
+		}
+		> * {
+			font-family: $mediumFont;
+			@include font-size(12px);
+			color: $sidebarTextColor;
+			width: 100%;
+			text-transform: uppercase;
+			margin: 0;
+		  padding-left: 0.9375rem;
+		  padding-right: 0.9375rem;
+		}
+	}
+	.sidebar-nav {
+		padding: 0;
+	}
+}
+
+.sidebar {
+	ul {
+		// overflow: hidden;
+		font-family: $baseFontFamily;
+		text-transform: uppercase;
+		margin: 0;
+		padding-left: 30px;
+		list-style: none;
+		// list-style-image: url('../img/white-triangle.svg');
+		li {
+			width: 100%;
+			padding: 0;
+			line-height: 3;
+			position: relative;
+			&:last-child {
+				span {
+					border-bottom: none;
+				}
+				a {
+					border-radius: 0 0 3px 3px;
+				}
+			}
+			&:hover {
+				// list-style-image: url('../img/blue-triangle.svg');
+				a:before {
+					background: $contentTextColor;
+					border: none;
+				}
+			}
+		}
+		a {
+			margin: -1px 0 -1px -30px;
+			padding-left: 30px;
+			display: block;
+			width: auto;
+			color: $sidebarTextColor;
+			line-height: normal;
+			@include max-breakpoint(screen-sm) {
+				font-size: 15px;
+			}
+			&:before {
+				@extend %pesudo;
+				width: 8px;
+				height: 8px;
+				top: 20px;
+				left: -16px;
+				transform: rotate(45deg);
+				border: 1px solid rgba(#fff, 0.5);
+			}
+			&:hover {
+				background-color: white;
+				color: $contentTextColor;
+			}
+			span {
+				margin-left: 5px;
+				display: block;
+				border-bottom: 1px solid $sidebarBorderColor;
+				padding: 14px 7px 14px 0;
+			}
+		}
+	}
+}
+
+.sidebar {
+	&.transportation > .row {
+    background: darken($transportationColor, 5%);
+    li:hover {
+    	a:before {
+				background: $transportationColor;
+    	}
+    }
+		a:hover {
+			color: $transportationColor;
+		}
+	}
+	&.efficiency > .row {
+    background: darken($efficiencyColor, 5%);
+    li:hover {
+    	a:before {
+				background: $efficiencyColor;
+    	}
+    }
+    a:hover {
+			color: $efficiencyColor;
+		}
+	}
+	&.renewables > .row {
+    background: darken($renewablesColor, 5%);
+    li:hover {
+    	a:before {
+				background: $renewablesColor;
+    	}
+    }
+    a:hover {
+			color: $renewablesColor;
+		}
+	}
+	&.smart-grid > .row {
+    background: darken($smartGridColor, 5%);
+    li:hover {
+    	a:before {
+				background: $smartGridColor;
+    	}
+    }
+    a:hover {
+			color: $smartGridColor;
+		}
+	}
+	&.economics > .row {
+    background: darken($economicsColor, 5%);
+    li:hover {
+    	a:before {
+				background: $economicsColor;
+    	}
+    }
+    a:hover {
+			color: $economicsColor;
+		}
+	}
+	> .row {
+		.content & {
+			margin-bottom: 100px;
+			border: none;
+		}
+	}
+	h6 {
+		margin: 50px 15px 25px;
+		@include font-size(28px);
+		text-transform: uppercase;
+		color: $contentTextColor;
+		@include max-breakpoint(screen-md) {
+			margin-left: 0;
+		}
+		@include max-breakpoint(screen-sm) {
+			margin: 30px 15px 5px 0;
+			@include font-size(20px);
+		}
+	}
+}
+
+.content .sidebar {
+	float: none;
+	margin: 0 auto;
+	@include max-breakpoint(screen-lg) {
+		width: 100%;
+	}
+	@include max-breakpoint(screen-md) {
+		max-width: 350px;
+	}
+	.sidebar-nav, .sidebar-feedback {
+		@include max-breakpoint(screen-sm) {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	> .row {
+		box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.2);
+	}
+	.sidebar-grade {
+		h3 {
+			@include max-breakpoint(screen-lg) {
+				@include font-size(80px);
+			}
+			@include max-breakpoint(tablet-horizontal) {
+				@include font-size(70px);
+			}
+			@include max-breakpoint(screen-md) {
+				@include font-size(90px);
+			}
+			@include max-breakpoint(screen-sm) {
+				border-bottom: none;
+				margin-top: 10px;
+				line-height: normal;
+				padding-bottom: 0;
+				@include font-size(70px);
+			}
+			@include max-breakpoint(screen-xs) {
+				@include font-size(50px);
+				margin-top: 5px;
+			}
+		}
+		h5 {
+			@include max-breakpoint(screen-md) {
+				@include font-size(16px);
+			}
+		}
+	}
+}
+
+.main-sidebar {
+	top: 0;
+	@include max-breakpoint(screen-md) {
+		cursor: pointer;
+		width: 100%;
+		position: fixed;
+		top: calc(100% - 53px);
+		z-index: 999;
+	}
+	@include max-breakpoint(screen-sm) {
+		top: calc(100% - 47px);
+	}
+	> .row {
+		@include max-breakpoint(screen-md) {
+			margin-top: 0;
+			box-shadow: 0 0px 10px 0px rgba(#000, 0.3);
+			border-radius: 0;
+		}
+	}
+	.sidebar-title h3 {
+		@include max-breakpoint(screen-md) {
+			@include font-size(25px);
+			margin-top: 0;
+			margin-bottom: 0;
+			padding: 5px 0;
+			float: left;
+			&.mobile-grade {
+				padding: 5px 20px;
+				float: right;
+				border-right: 1px solid $sidebarBorderColor;
+				small {
+					font-family: $baseFontFamily;
+				}
+			}
+		}
+		img {
+			width: 30px;
+			margin-top: -7px;
+			margin-right: 7px;
+			display: none;
+			visibility: hidden;
+			@include max-breakpoint(screen-md) {
+				display: inline-block;
+				visibility: visible;
+			}
+			@include max-breakpoint(screen-sm) {
+				margin-top: -2px;
+			}
+		}
+	}
+	.mobile-grade {
+		@include max-breakpoint(screen-md) {
+			display: block;
+			visibility: visible;
+		}
+	}
+}

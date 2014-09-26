@@ -1,0 +1,36 @@
+.progress-to-2030-smart-grid-capacity-goals {
+	.bar-oahu {
+		fill: $orange;
+	}
+	.bar-maui-molokai-lanai {
+		fill: $seaBlue;
+	}
+	.bar-hawaii {
+		fill: $nauticaTeal;
+	}
+}
+.comparison-of-renewable-and-fossil-fuel-energy-costs {
+	.geothermal {
+		fill: $algae;
+	}
+	.municipal.solid {
+		fill: $moneyGreen;
+	}
+	.solar {
+		fill: $peach;
+	}
+	.wind {
+		fill: $cloudBlue;
+	}
+	.fuel.oil {
+		fill: $oilGrey;
+	}
+	.diesel {
+		fill: $dieselOrange;
+	}
+	.bar-text {
+		fill: white;
+		@include font-size(25px);
+		
+	}
+}

@@ -1,0 +1,228 @@
+section.charts {
+	h2, h3 {
+		text-transform: uppercase;
+		// color: white;
+		@include font-size(20px);
+		line-height: 3;
+	}
+	h2 {
+		border-right: 1px solid white;
+		margin-right: 10px;
+	}
+	header {
+		border-bottom: 1px solid white;
+	}
+	.chart-title {
+		&:first-child {
+			padding-right: 0;
+		}
+	}
+}
+
+$chartGreen: #61AC53;
+$chartRed: #F21D2F;
+$chartBlue: #0192AC;
+
+.graph {
+	text {
+		font-family: $svgFontNormal;
+		font-size: 18px;
+		letter-spacing: 1px;
+		fill: inherit;
+	}
+	.yaxis-label {
+		font-family: $mediumFont;
+		fill: #4B4B4B;
+		text-transform: uppercase;
+		@include font-size(14px);
+	}
+}
+
+.x-axis {
+	.tick {
+		// &:first-child {
+		// 	text {
+		// 		text-anchor: start !important;
+		// 	}
+		// }
+		// text {
+		// 	text-anchor: middle;
+		// }
+	}
+}
+
+.tick line {
+	stroke: #E6E7E8;
+	stroke-width: 1;
+}
+
+
+.line {
+	fill: transparent;
+	stroke: #000;
+	stroke-width: 2;
+	&.top {
+		stroke: $chartRed;
+		fill: rgba($chartRed, 0.3)
+	}
+	&.bottom {
+		stroke: $chartGreen;
+		fill: rgba($chartGreen, 0.3);
+	}
+	&.single-down {
+		stroke: $chartRed;
+	}
+	&.single-up {
+		stroke: $chartGreen;
+	}
+}
+
+.trendline {
+	stroke-width: 2.5px;
+	stroke: $chartBlue;
+}
+
+.graph-border {
+  fill: transparent;
+  stroke: #D1D2D4;
+  stroke-width: 2.5;
+}
+
+// invert colors
+.vehicle-effciency-chart, .solar-water-heating-chart, .energy-storage-chart, .electric-vehicles-chart {
+	.line {
+		&.top {
+			stroke: $chartGreen;
+			fill: rgba($chartGreen, 0.3);
+		}
+		&.bottom {
+			stroke: $chartRed;
+			fill: rgba($chartRed, 0.3)
+		}
+	}
+}
+
+.retiring-fossil-generating-units-chart {
+	.line {
+		&.single-down {
+			stroke: $chartGreen;
+		}
+		&.single-up {
+			stroke: $chartRed;
+		}
+	}
+}
+
+.line-chart {
+	.line {
+		fill: transparent;
+	}
+	.oahu {
+	  stroke: #E773AA;
+	}
+	.maui {
+	  stroke: #F0CB45;
+	}
+	.lanai {
+	  stroke: #FB913B;
+	}
+	.molokai {
+	  stroke: #94C85D;
+	}
+	.hawaii {
+	  stroke: #D4495F;
+	}
+	.kauai {
+	  stroke: #8B4997;
+	}
+}
+
+.hawaii-residential-electricity-chart {
+	.hawaii {
+		stroke: #E55037;
+	}
+	.alaska {
+		stroke: #E55037;
+	}
+	.new-york {
+		stroke: #F0CC52;
+	}
+	.connecticut {
+		stroke: #4C87BE;
+	}
+	.vermont {
+		stroke: #FA9B46;
+	}
+	.new-hampshire {
+		stroke: #ACDFE3;
+	}
+	.new-jersey {
+		stroke: #97C95B;
+	}
+	.california {
+		stroke: #4AA7B9;
+	}
+	.massachuset {
+		stroke: #E8968E;
+	}
+	.maine {
+		stroke: #864292;
+	}
+}
+
+.area-chart {
+	.tick line {
+		stroke: rgba(#c7c8ca, 0.75);
+	}
+	.line {
+		stroke: #fff;
+	}
+	.renewable {
+		fill: #F0CB45;
+	}
+	.oil {
+		fill: #e8e7e5;
+	}
+	.coal {
+		fill: #58595B;
+	}
+}
+
+.map {
+	.renewable-generation-by-island-map & {
+		.island {
+			fill: $renewablesColor;
+			stroke: $renewablesColor;
+			stroke-width: 2px;
+		}
+		.island-name {
+			fill: $renewablesColor;
+		}
+	}
+	.smart-meter-installations-map & {
+		.island {
+			fill: $smartGridColor;
+			stroke: $smartGridColor;
+			stroke-width: 2px;
+		}
+		.island-name {
+			fill: $smartGridColor;
+		}
+	}
+}
+
+.map-tooltip {
+	.arc {
+    stroke: #fff;
+    stroke-width: 1px;
+  }
+  .island-name {
+		font-family: $svgFontNormal;
+  	font-weight: bold;
+    text-anchor: middle;
+    text-transform: uppercase;
+  }
+  .island-value {
+    text-anchor: middle;
+  }
+}

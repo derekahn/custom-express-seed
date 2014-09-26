@@ -1,0 +1,53 @@
+/*!
+ * 2014 Energy Reportcard
+ * -----------------------
+ */
+
+// START SCSS
+// Run following command relative to root folder
+// $ --watch css:css
+// It will detect changes in "sass" folder and overide "style.css"
+
+// Foundation
+// ---------------------------------------------------
+@import "framework/normalize";
+@import "framework/foundation/settings";
+@import "framework/foundation/foundation";
+// @import "../../bower_components/foundation/scss/foundation";
+
+// Mixin, Variables, Etc
+// ---------------------------------------------------
+@import "framework/config";
+@import "framework/media-queries";
+@import "framework/colors";
+@import "framework/typography";
+@import "framework/mixin";
+@import "framework/placeholder";
+
+// Modules
+// ---------------------------------------------------
+@import "modules/buttons";
+@import "modules/forms";
+@import "modules/fonts";
+@import "modules/headings";
+@import "modules/images";
+@import "modules/links";
+@import "modules/circles";
+@import "modules/dropdown";
+
+// Page Styles
+// ---------------------------------------------------
+// Partials
+@import "partials/base";
+@import "partials/header";
+@import "partials/sidebar";
+
+// Sections
+@import "sections/landing-page";
+@import "sections/content";
+@import "sections/charts";
+@import "sections/bar-charts";
+@import "sections/renewables";
+
+// Typography
+@import "modules/fonts";

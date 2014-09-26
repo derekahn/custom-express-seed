@@ -1,0 +1,81 @@
+.landing-page {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background: linear-gradient(
+      rgba($mainBg, 1),
+      rgba(saturate($mainBg, 10%), 0.85)
+    ), url(../img/main-background.jpg) no-repeat center center fixed;
+  background-size: cover;
+  // &:before {
+  //   content: "";
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   background: rgba($mainBg, 0.85);
+  // }
+  > .row {
+    background: transparent;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    height: auto;
+  }
+  h1 {
+    color: #fff;
+    line-height: 1.8em;
+  }
+  p {
+    color: #fff;
+    @include font-size(24px);
+    line-height: 1.4em;
+    max-width: 700px;
+  }
+}
+
+.landing-page-icons {
+  margin-top: 45px;
+  text-align: center;
+}
+
+.diamond-icon {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  padding: 10px;
+  margin: -10px 30px;
+  border: 1px solid $borderColor;
+  transform: rotate(45deg);
+  img {
+    transform: rotate(-45deg);
+  }
+}
+
+.bottom {
+  > * {
+    position: absolute;
+    bottom: 20px;
+    opacity: 0.5;
+    z-index: 10;
+  }
+  p {
+    left: 20px;
+    margin: 0;
+    width: 45%;
+    @include font-size(16px);
+  }
+  .sudokrew-logo {
+    right: 20px;
+  }
+  .down-arrow {
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    width: 50px;
+    margin: 0 auto;
+  }
+}

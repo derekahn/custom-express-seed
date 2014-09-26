@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'din_otbold';
+  src: url('#{$FontPath}/dinot-bold-webfont.eot');
+  src: url('#{$FontPath}/dinot-bold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('#{$FontPath}/dinot-bold-webfont.woff') format('woff'),
+       url('#{$FontPath}/dinot-bold-webfont.svg#din_otbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-variant:normal;
+}
+
+@font-face {
+  font-family: 'din_otlight';
+  src: url('#{$FontPath}/dinot-light-webfont.eot');
+  src: url('#{$FontPath}/dinot-light-webfont.eot?#iefix') format('embedded-opentype'),
+       url('#{$FontPath}/dinot-light-webfont.woff') format('woff'),
+       url('#{$FontPath}/dinot-light-webfont.svg#din_otlight') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-variant:normal;
+}
+
+@font-face {
+  font-family: 'din_otmedium';
+  src: url('#{$FontPath}/dinot-medium-webfont.eot');
+  src: url('#{$FontPath}/dinot-medium-webfont.eot?#iefix') format('embedded-opentype'),
+       url('#{$FontPath}/dinot-medium-webfont.woff') format('woff'),
+       url('#{$FontPath}/dinot-medium-webfont.svg#din_otmedium') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-variant:normal;
+}
+
+@font-face {
+  font-family: 'knockout-47';
+  src: url('#{$FontPath}/knockout-47.eot');
+  src: url('#{$FontPath}/knockout-47.eot?#iefix') format('embedded-opentype'),
+       url('#{$FontPath}/knockout-47.woff') format('woff'),
+       url('#{$FontPath}/knockout-47.svg#knockout-47') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-variant:normal;
+}
+
+@font-face {
+  font-family: 'knockout-48';
+  src: url('#{$FontPath}/knockout-48.eot');
+  src: url('#{$FontPath}/knockout-48.eot?#iefix') format('embedded-opentype'),
+       url('#{$FontPath}/knockout-48.woff') format('woff'),
+       url('#{$FontPath}/knockout-48.svg#knockout-48') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-variant:normal;
+}

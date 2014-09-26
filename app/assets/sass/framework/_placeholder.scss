@@ -1,0 +1,15 @@
+%removePadding {
+  margin-left: -0.9375rem;
+  margin-right: -0.9375rem;
+}
+
+%pesudo{
+  content: "";
+  position: absolute;
+}
+
+%removeListingStyle {
+  list-style: none;
+  margin-left: -25px;
+  margin-bottom: 0;
+}

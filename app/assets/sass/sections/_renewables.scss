@@ -1,0 +1,32 @@
+.renewables-page {
+  .timeline-img {
+    width: 80%;
+    @include min-breakpoint(screen-lg) {
+      width: 70%;
+    }
+    @include min-breakpoint(laptop) {
+      width: 60%;
+    }
+    @include min-breakpoint(screen-xl) {
+      width: 50%;
+    }
+    @include min-breakpoint(desktop) {
+      width: 40%;
+    }
+    @include between-breakpoints(992px, 1060px) {
+      width: 100%;
+    }
+    @include between-breakpoints(1130px, 1160px) {
+      width: 70%;
+    }
+    @include between-breakpoints(1161px, 1199px) {
+      width: 65%;
+    }
+  }
+  .thekeyis100-img {
+    width: 80%;
+    @include min-breakpoint(screen-xl) {
+      width: 60%;
+    }
+  }
+}
