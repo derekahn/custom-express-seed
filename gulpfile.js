@@ -1,26 +1,26 @@
-var gulp = require('gulp'),
-  compass = require('gulp-compass'),
-  plumber = require('gulp-plumber'),
-  prefix = require('gulp-autoprefixer'),
-  uglify = require('gulp-uglify'),
-  refresh = require('gulp-livereload'),
-  nodemon = require('gulp-nodemon'),
-  notify = require('node-notifier'),
-  lr = require('tiny-lr'),
-  lrserver = lr();
+var gulp = require('gulp');
+var compass = require('gulp-compass');
+var plumber = require('gulp-plumber');
+var prefix = require('gulp-autoprefixer');
+var uglify = require('gulp-uglify');
+var refresh = require('gulp-livereload');
+var nodemon = require('gulp-nodemon');
+var notify = require('node-notifier');
+var lr = require('tiny-lr');
+var lrserver = lr();
 
 function handleError(err) {
   notify(err.toString());
   this.emit('end');
 }
 
-gulp.task('scss', function() {
-  gulp.src('./app/assets/scss/app.scss')
+gulp.task('sass', function(){
+  gulp.src('./app/assets/sass/styles.scss')
     .pipe(plumber())
     .pipe(compass({
       config_file: './config.rb',
       css: './public/css',
-      sass: './app/assets/scss'
+      sass: './app/assets/sass'
     }))
     .pipe(prefix())
     .pipe(gulp.dest('./public/css'))
@@ -29,53 +29,57 @@ gulp.task('scss', function() {
     });
 });
 
-gulp.task('img', function() {
-  gulp.src('./app/assets/img/**/*')
-    .pipe(gulp.dest('./public/img/'));
+gulp.task('images', function () {
+  gulp.src('./app/assets/images/**/*')
+    .pipe(gulp.dest('./public/images/'));
 });
 
-gulp.task('js', function() {
+gulp.task('js', function () {
   gulp.src('./app/assets/js/**/*.js')
     .pipe(gulp.dest('./public/js/'));
 });
 
-gulp.task('views', function() {
-  gulp.src('./app/views/**/*')
-    .pipe(gulp.dest('./public/'));
+gulp.task('data', function() {
+  gulp.src('./app/assets/data/**/*.json')
+    .pipe(gulp.dest('./public/data'));
 });
 
-gulp.task('copy', function() {
+gulp.task('copy', function () {
   // Copy bower components into public/js/libs
   gulp.src([
     './bower_components/jquery/dist/jquery.js',
     './bower_components/foundation/js/foundation.js',
-    './bower_components/modernizr/modernizr.js'
+    './bower_components/Calendario/jquery.calendario.js',
+    './bower_components/Calendario/modernizr.custom.63321.js'
   ]).pipe(uglify())
     .pipe(gulp.dest('./public/js/libs'));
+
+  // Copy fonts into public/fonts
+  gulp.src('./app/assets/fonts/**/*')
+    .pipe(gulp.dest('./public/fonts'));
 });
 
 gulp.task('watch', function() {
-
-  gulp.watch('./app/assets/scss/**/*.scss', ['scss']);
-  gulp.watch('./app/assets/img/**/*', ['img']);
+  gulp.watch('./app/assets/sass/**/*.scss', ['sass']);
+  gulp.watch('./app/assets/images/**/*', ['images']);
   gulp.watch('./app/assets/js/**/*.js', ['js']);
-  // gulp.watch('./app/views/**/*', ['views']);
-
-  //refresh.listen();
-  gulp.watch('./public/**/*').on('change', refresh.changed);
+  gulp.watch('./public/**/*').on('change', function(file) {
+    refresh.changed(file.path);
+  });
 });
 
 gulp.task('serve', function() {
   nodemon({
     script: 'server.js',
-    ext: 'js'
-  }).on('restart', function() {
-    console.log('restarted! ' + (new Date()));
-  });
+    ext: 'server.js'
+  }).on('restart', function () {
+      console.log('restarted! ' + (new Date()));
+    });
 
-  // lrserver.listen();
+  lrserver.listen();
 });
 
-gulp.task('build', ['scss', 'img', 'js']);
+gulp.task('build', ['sass', 'images', 'js', 'data', 'copy']);
 
 gulp.task('default', ['build', 'serve', 'watch']);
+
