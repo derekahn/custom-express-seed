@@ -40,11 +40,6 @@ gulp.task('js', function () {
     .pipe(gulp.dest('public/js/'));
 });
 
-gulp.task('data', function() {
-  gulp.src('app/assets/data/**/*.json')
-    .pipe(gulp.dest('public/data'));
-});
-
 gulp.task('copy', function () {
   // Copy bower components into public/js/libs
   gulp.src([
@@ -79,7 +74,7 @@ gulp.task('serve', function() {
   // lrserver.listen();
 });
 
-gulp.task('build', ['sass', 'images', 'js', 'data', 'copy']);
+gulp.task('build', ['sass', 'images', 'js', 'copy']);
 
 gulp.task('default', ['build', 'serve', 'watch']);
 
