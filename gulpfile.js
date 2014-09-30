@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var compass = require('gulp-compass');
+var sass = require('gulp-sass');
 var plumber = require('gulp-plumber');
 var prefix = require('gulp-autoprefixer');
 var uglify = require('gulp-uglify');
@@ -17,11 +17,7 @@ function handleError(err) {
 gulp.task('sass', function(){
   gulp.src('./app/assets/sass/styles.scss')
     .pipe(plumber())
-    .pipe(compass({
-      config_file: './config.rb',
-      css: './public/css',
-      sass: './app/assets/sass'
-    }))
+    .pipe(sass())
     .pipe(prefix())
     .pipe(gulp.dest('./public/css'))
     .on('error', function() {
