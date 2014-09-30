@@ -3,7 +3,7 @@ var sass = require('gulp-sass');
 var plumber = require('gulp-plumber');
 var prefix = require('gulp-autoprefixer');
 var uglify = require('gulp-uglify');
-var refresh = require('gulp-livereload');
+var livereload = require('gulp-livereload');
 var nodemon = require('gulp-nodemon');
 var notify = require('gulp-notify');
 
@@ -11,6 +11,7 @@ var paths = {
   sass: 'app/assets/sass/styles.scss',
   img: 'app/assets/images/**/*',
   js: 'app/assets/js/**/*.js',
+  views: 'app/views/**/*',
   fonts: 'app/assets/fonts/**/*'
 };
 
@@ -58,12 +59,17 @@ gulp.task('watch', function() {
   gulp.watch(paths.img, ['images']);
   gulp.watch(paths.js, ['js']);
 
-  gulp.watch('public/**/*').on('change', function(file) {
-    refresh.changed(file.path);
+  gulp.watch([
+    'public/**/*',
+    paths.views
+  ]).on('change', function(file) {
+    livereload.changed(file.path);
   });
 });
 
 gulp.task('serve', function() {
+  livereload.listen();
+
   nodemon({
     script: 'server.js',
     ext: 'js',
@@ -71,8 +77,6 @@ gulp.task('serve', function() {
   }).on('restart', function () {
       console.log('restarted! ' + (new Date()));
     });
-
-  // lrserver.listen();
 });
 
 gulp.task('build', ['sass', 'images', 'js', 'copy']);
