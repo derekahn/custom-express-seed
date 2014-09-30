@@ -54,7 +54,7 @@ gulp.task('copy', function () {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('app/assets/scss/**/*.scss', ['sass']);
+  gulp.watch('app/assets/sass/**/*.scss', ['sass']);
   gulp.watch(paths.img, ['images']);
   gulp.watch(paths.js, ['js']);
 
@@ -66,7 +66,8 @@ gulp.task('watch', function() {
 gulp.task('serve', function() {
   nodemon({
     script: 'server.js',
-    ext: 'server.js'
+    ext: 'js',
+    ignore: ['app/assets/**', 'public/**']
   }).on('restart', function () {
       console.log('restarted! ' + (new Date()));
     });
