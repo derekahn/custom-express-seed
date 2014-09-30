@@ -22,13 +22,10 @@ function onError(err) {
 
 gulp.task('sass', function(){
   gulp.src(paths.sass)
-    .pipe(plumber())
+    .pipe(plumber(onError))
     .pipe(sass())
     .pipe(prefix())
-    .pipe(gulp.dest('public/css'))
-    .on('error', function() {
-      handleError(err);
-    });
+    .pipe(gulp.dest('public/css'));
 });
 
 gulp.task('images', function () {
