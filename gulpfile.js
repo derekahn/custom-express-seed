@@ -21,7 +21,7 @@ function onError(err) {
 }
 
 gulp.task('sass', function(){
-  gulp.src(paths.sass)
+  return gulp.src(paths.sass)
     .pipe(plumber(onError))
     .pipe(sass())
     .pipe(prefix())
@@ -29,12 +29,12 @@ gulp.task('sass', function(){
 });
 
 gulp.task('images', function () {
-  gulp.src(paths.img)
+  return gulp.src(paths.img)
     .pipe(gulp.dest('public/images/'));
 });
 
 gulp.task('js', function () {
-  gulp.src(paths.js)
+  return gulp.src(paths.js)
     .pipe(gulp.dest('public/js/'));
 });
 
