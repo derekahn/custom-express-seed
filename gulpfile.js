@@ -7,57 +7,65 @@ var refresh = require('gulp-livereload');
 var nodemon = require('gulp-nodemon');
 var notify = require('gulp-notify');
 
+var paths = {
+  sass: 'app/assets/sass/styles.scss',
+  img: 'app/assets/images/**/*',
+  js: 'app/assets/js/**/*.js',
+  fonts: 'app/assets/fonts/**/*'
+};
+
 function onError(err) {
   notify.onError(err.message)(err);
   this.emit('end');
 }
 
 gulp.task('sass', function(){
-  gulp.src('./app/assets/sass/styles.scss')
+  gulp.src(paths.sass)
     .pipe(plumber())
     .pipe(sass())
     .pipe(prefix())
-    .pipe(gulp.dest('./public/css'))
+    .pipe(gulp.dest('public/css'))
     .on('error', function() {
       handleError(err);
     });
 });
 
 gulp.task('images', function () {
-  gulp.src('./app/assets/images/**/*')
-    .pipe(gulp.dest('./public/images/'));
+  gulp.src(paths.img)
+    .pipe(gulp.dest('public/images/'));
 });
 
 gulp.task('js', function () {
-  gulp.src('./app/assets/js/**/*.js')
-    .pipe(gulp.dest('./public/js/'));
+  gulp.src(paths.js)
+    .pipe(gulp.dest('public/js/'));
 });
 
 gulp.task('data', function() {
-  gulp.src('./app/assets/data/**/*.json')
-    .pipe(gulp.dest('./public/data'));
+  gulp.src('app/assets/data/**/*.json')
+    .pipe(gulp.dest('public/data'));
 });
 
 gulp.task('copy', function () {
   // Copy bower components into public/js/libs
   gulp.src([
-    './bower_components/jquery/dist/jquery.js',
-    './bower_components/foundation/js/foundation.js',
-    './bower_components/Calendario/jquery.calendario.js',
-    './bower_components/Calendario/modernizr.custom.63321.js'
+    'bower_components/jquery/dist/jquery.js',
+    'bower_components/foundation/js/foundation.js',
+    'bower_components/Calendario/jquery.calendario.js',
+    'bower_components/Calendario/modernizr.custom.63321.js'
   ]).pipe(uglify())
-    .pipe(gulp.dest('./public/js/libs'));
+    .pipe(gulp.dest('public/js/libs'));
 
   // Copy fonts into public/fonts
-  gulp.src('./app/assets/fonts/**/*')
-    .pipe(gulp.dest('./public/fonts'));
+  gulp.src(paths.fonts)
+    .pipe(gulp.dest('public/fonts'));
 });
 
 gulp.task('watch', function() {
-  gulp.watch('./app/assets/sass/**/*.scss', ['sass']);
-  gulp.watch('./app/assets/images/**/*', ['images']);
-  gulp.watch('./app/assets/js/**/*.js', ['js']);
-  gulp.watch('./public/**/*').on('change', function(file) {
+  gulp.watch('app/assets/scss/**/*.scss', ['sass']);
+  gulp.watch(paths.img, ['images']);
+  gulp.watch(paths.js, ['js']);
+
+  gulp.watch('public/**/*').on('change', function(file) {
     refresh.changed(file.path);
   });
 });
