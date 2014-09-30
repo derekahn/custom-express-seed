@@ -5,12 +5,12 @@ var prefix = require('gulp-autoprefixer');
 var uglify = require('gulp-uglify');
 var refresh = require('gulp-livereload');
 var nodemon = require('gulp-nodemon');
-var notify = require('node-notifier');
+var notify = require('gulp-notify');
 var lr = require('tiny-lr');
 var lrserver = lr();
 
-function handleError(err) {
-  notify(err.toString());
+function onError(err) {
+  notify.onError(err.message)(err);
   this.emit('end');
 }
 
