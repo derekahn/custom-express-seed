@@ -6,8 +6,6 @@ var uglify = require('gulp-uglify');
 var refresh = require('gulp-livereload');
 var nodemon = require('gulp-nodemon');
 var notify = require('gulp-notify');
-var lr = require('tiny-lr');
-var lrserver = lr();
 
 function onError(err) {
   notify.onError(err.message)(err);
@@ -72,7 +70,7 @@ gulp.task('serve', function() {
       console.log('restarted! ' + (new Date()));
     });
 
-  lrserver.listen();
+  // lrserver.listen();
 });
 
 gulp.task('build', ['sass', 'images', 'js', 'data', 'copy']);
