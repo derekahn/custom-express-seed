@@ -1,85 +1,82 @@
 var gulp = require('gulp');
-var compass = require('gulp-compass');
+var sass = require('gulp-sass');
 var plumber = require('gulp-plumber');
 var prefix = require('gulp-autoprefixer');
 var uglify = require('gulp-uglify');
-var refresh = require('gulp-livereload');
+var livereload = require('gulp-livereload');
 var nodemon = require('gulp-nodemon');
-var notify = require('node-notifier');
-var lr = require('tiny-lr');
-var lrserver = lr();
+var notify = require('gulp-notify');
 
-function handleError(err) {
-  notify(err.toString());
+var paths = {
+  sass: 'app/assets/sass/styles.scss',
+  img: 'app/assets/images/**/*',
+  js: 'app/assets/js/**/*.js',
+  views: 'app/views/**/*',
+  fonts: 'app/assets/fonts/**/*'
+};
+
+function onError(err) {
+  notify.onError(err.message)(err);
   this.emit('end');
 }
 
 gulp.task('sass', function(){
-  gulp.src('./app/assets/sass/styles.scss')
-    .pipe(plumber())
-    .pipe(compass({
-      config_file: './config.rb',
-      css: './public/css',
-      sass: './app/assets/sass'
-    }))
+  return gulp.src(paths.sass)
+    .pipe(plumber(onError))
+    .pipe(sass())
     .pipe(prefix())
-    .pipe(gulp.dest('./public/css'))
-    .on('error', function() {
-      handleError(err);
-    });
+    .pipe(gulp.dest('public/css'));
 });
 
 gulp.task('images', function () {
-  gulp.src('./app/assets/images/**/*')
-    .pipe(gulp.dest('./public/images/'));
+  return gulp.src(paths.img)
+    .pipe(gulp.dest('public/images/'));
 });
 
 gulp.task('js', function () {
-  gulp.src('./app/assets/js/**/*.js')
-    .pipe(gulp.dest('./public/js/'));
-});
-
-gulp.task('data', function() {
-  gulp.src('./app/assets/data/**/*.json')
-    .pipe(gulp.dest('./public/data'));
+  return gulp.src(paths.js)
+    .pipe(gulp.dest('public/js/'));
 });
 
 gulp.task('copy', function () {
   // Copy bower components into public/js/libs
   gulp.src([
-    './bower_components/jquery/dist/jquery.js',
-    './bower_components/foundation/js/foundation.js',
-    './bower_components/Calendario/jquery.calendario.js',
-    './bower_components/Calendario/modernizr.custom.63321.js'
+    'bower_components/jquery/dist/jquery.js',
+    'bower_components/foundation/js/foundation.js'
   ]).pipe(uglify())
-    .pipe(gulp.dest('./public/js/libs'));
+    .pipe(gulp.dest('public/js/libs'));
 
   // Copy fonts into public/fonts
-  gulp.src('./app/assets/fonts/**/*')
-    .pipe(gulp.dest('./public/fonts'));
+  gulp.src(paths.fonts)
+    .pipe(gulp.dest('public/fonts'));
 });
 
 gulp.task('watch', function() {
-  gulp.watch('./app/assets/sass/**/*.scss', ['sass']);
-  gulp.watch('./app/assets/images/**/*', ['images']);
-  gulp.watch('./app/assets/js/**/*.js', ['js']);
-  gulp.watch('./public/**/*').on('change', function(file) {
-    refresh.changed(file.path);
+  gulp.watch('app/assets/sass/**/*.scss', ['sass']);
+  gulp.watch(paths.img, ['images']);
+  gulp.watch(paths.js, ['js']);
+
+  gulp.watch([
+    'public/**/*',
+    paths.views
+  ]).on('change', function(file) {
+    livereload.changed(file.path);
   });
 });
 
 gulp.task('serve', function() {
+  livereload.listen();
+
   nodemon({
     script: 'server.js',
-    ext: 'server.js'
+    ext: 'js',
+    ignore: ['app/assets/**', 'public/**']
   }).on('restart', function () {
       console.log('restarted! ' + (new Date()));
     });
-
-  lrserver.listen();
 });
 
-gulp.task('build', ['sass', 'images', 'js', 'data', 'copy']);
+gulp.task('build', ['sass', 'images', 'js', 'copy']);
 
 gulp.task('default', ['build', 'serve', 'watch']);
 

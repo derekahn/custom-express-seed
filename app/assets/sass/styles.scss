@@ -1,5 +1,5 @@
 /*!
- * 2014 Energy Reportcard
+ * Project Name
  * -----------------------
  */
 
@@ -13,7 +13,6 @@
 @import "framework/normalize";
 @import "framework/foundation/settings";
 @import "framework/foundation/foundation";
-// @import "../../bower_components/foundation/scss/foundation";
 
 // Mixin, Variables, Etc
 // ---------------------------------------------------
@@ -39,15 +38,8 @@
 // ---------------------------------------------------
 // Partials
 @import "partials/base";
-@import "partials/header";
-@import "partials/sidebar";
 
 // Sections
-@import "sections/landing-page";
-@import "sections/content";
-@import "sections/charts";
-@import "sections/bar-charts";
-@import "sections/renewables";
 
 // Typography
 @import "modules/fonts";
